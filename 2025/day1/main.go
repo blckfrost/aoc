@@ -8,17 +8,6 @@ import (
 	"strconv"
 )
 
-/* Advent of Code 2025 - Day 1
-L -> toward lower numbers
-R -> toward higher numbers
-dstance -> how many clicks dial should be rotated in that direction
-numbers are 0 - 99
-dial is a full circle so after 99 comes 0 again
- ---> dial starts at 50 <---
-actual password -> number of times the dial reaches zero after 0 after any
-rotation sequence
-*/
-
 func main() {
 	// starting position
 	pos := 50
@@ -44,14 +33,15 @@ func main() {
 			log.Fatal(err)
 		}
 
-		if direction == 'L' {
+		switch direction {
+		case 'L':
 			pos = (pos - distance + 100) % 100
 
 			if pos == 0 {
 				atZero++
 			}
 
-		} else {
+		case 'R':
 			pos = (pos + distance) % 100
 			if pos == 0 {
 				atZero++
@@ -59,6 +49,6 @@ func main() {
 		}
 	}
 	fmt.Println("final position:", pos)
-	fmt.Println("number of times we reach zero:", atZero)
+	fmt.Println("password:", atZero)
 
 }
